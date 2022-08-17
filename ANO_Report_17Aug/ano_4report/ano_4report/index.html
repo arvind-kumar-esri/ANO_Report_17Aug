@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>ANO IV Report</title>
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#00d0b0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <!-- arcgis js -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
+
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.0-beta.81/calcite.css" />
+
+    <!-- main template stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .row {
+            --bs-gutter-x: -0.5rem;
+        }
+    </style>
+
+
+
+</head>
+
+<body>
+
+<header id="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 d-flex flex-row">
+                    <a href="https://anophq.cgpolice.gov.in/ano_homepage/">
+                        <img src="https://anophq.cgpolice.gov.in/portal/sharing/rest/content/items/37ac1beaa250420b9af8d8a006bb5da0/data" height="19" width="19" />
+                    </a>
+                    
+                    <span class="brandname">Daily <mask>Force</mask> Movement</span>
+                </div>
+                <div class="col-md-9">
+                    <nav>
+                        <div class="nav nav-tabs justify-content-end mt-4" id="nav-tab" role="tablist">
+                            <button class="btn btn-danger btn-sm active" id="Report1-tab" data-bs-toggle="tab" data-bs-target="#Report1" type="button" role="tab" aria-controls="Report1" aria-selected="true">ANO-I, II, III</button>
+                            <button class="btn btn-danger btn-sm" id="Report2-tab" data-bs-toggle="tab" data-bs-target="#Report2" type="button" role="tab" aria-controls="Report2" aria-selected="false">ANO-IV</button>
+                            <button class="btn btn-danger btn-sm" id="Report3-tab" data-bs-toggle="tab" data-bs-target="#Report3" type="button" role="tab" aria-controls="Report3" aria-selected="false">
+                                ANO-VI
+                            </button>
+
+                            <button class="btn btn-danger btn-sm" id="Report4-tab" data-bs-toggle="tab" data-bs-target="#Report4" type="button" role="tab" aria-controls="Report4" aria-selected="false">
+                                Analysis of IEDs
+                            </button>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="Cardcontainer">
+        <div class="row">
+            <div class="col-md-5 p-2">
+                <div class="card h-100">
+                    <!--  <img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body d-flex justify-content-between">
+                        <!-- <h5 class="card-title">Card title</h5>-->
+                        <p class="card-text"> Strength of Force:</p> <b id="strength"></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 p-2">
+                <div class="card h-100">
+                    <!--  <img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body d-flex justify-content-between">
+                        <!--  <h5 class="card-title">Card title</h5>-->
+                        <p class="card-text">Duration: </p><b id="duration"></b>
+                    </div>
+                </div>
+            </div>
+            <calcite-button appearance="outline" color="red" icon-start="refresh" class=" mr-2" id="refresh">
+            </calcite-button>
+
+        </div>
+    </div>
+
+
+
+    <section>
+
+
+        <div class="row">
+            <div class="col-md-6 p-2">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <label class="pt-1">Map Tools</label>
+                        <div>
+                            <calcite-button appearance="outline" color="red" icon-start="print" class="mr-2" id="print">
+                            </calcite-button>
+                            <calcite-button appearance="outline" color="red" icon-start="legend" class="mr-2" id="legend-btn">
+                            </calcite-button>
+                            <calcite-button appearance="outline" color="red" icon-start="basemap" class="mr-2" id="basemap">
+                            </calcite-button>
+                            <calcite-button appearance="outline" color="red" icon-start="layers" class="fmr-2 " id="layers">
+                            </calcite-button>
+                        </div>
+                    </div>
+
+                    <div id="mapDiv">
+
+                        <div class="btnobject">
+                            <div id="layerList"></div>
+                            <div id="basemapGallery"></div>
+                            <div id="legend"></div>
+                            <div id="printDiv"></div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 p-2">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+
+                        <div id="dropdown">
+                            <label style="font-size: smaller;">District</label>
+                            <select name="district-names" id="selectDistrict" style="width:100px; font-size:smaller">
+                                
+                            </select>
+
+                            <label style="font-size: smaller;">P.S.</label>
+                            <select name="stations" id="selectPs" style="width:100px; font-size:smaller">
+                                
+                            </select>
+
+                            
+
+                            <label style="font-size: smaller;">Date</label>
+                            <input style="width:111px; font-size:smaller" type="text"
+                                   id="date"
+                                   name="trip-start"
+                                   min="2010-01-01"
+                                   max="2037-12-31" />
+                        </div>
+
+
+                        <div class="col-md-4 text-end" style="width:20%">
+                            
+                            
+                            <calcite-button appearance="outline" color="red" icon-start="graph-bar-side-by-side" class=" mr-2" id="barchart1">
+                            </calcite-button>
+
+                            <calcite-button appearance="outline" color="red" icon-start="graph-scatter-plot" class=" mr-2" id="bubblechart1">
+                            </calcite-button>
+
+                            <calcite-button appearance="outline" color="red" icon-start="pie-chart" class=" mr-2" id="doughnutchart1">
+                            </calcite-button>
+
+
+
+                        </div>
+
+                    </div>
+
+                    <!-- <div class="card-body" style="height:387px;position: relative;padding-top: 33px; width: 100%;">-->
+                    <p style="text-align: center; color:saddlebrown; margin-top:2%;">Strength of Force</p>
+                    <div class ='card-body' style="height: 325px">
+                        <div id="barChart" style="height: 100%;"></div>
+                        <div id="bubbleChart" style="height: 100%;"></div>
+                        <div id="doughnutChart" style="height: 100%;"></div> 
+                    </div>
+                    
+
+
+                    <!--  -->
+                </div>
+            </div>
+
+
+        
+
+
+        
+            <div class="col-md-4 p-2">
+                <div class="card" style=" height:380px;">
+                    <div class="card-header d-flex justify-content-between">
+                        <label>Duration of Search of Villages</label>
+
+                        <div class="col-md-4 text-end" style="width:25%">
+
+                            <calcite-button appearance="outline" color="red" icon-start="graph-bar-side-by-side" class=" mr-2" id="barchart2">
+                            </calcite-button>
+
+                            <calcite-button appearance="outline" color="red" icon-start="graph-scatter-plot" class=" mr-2" id="bubblechart2">
+                            </calcite-button>
+
+                            <calcite-button appearance="outline" color="red" icon-start="pie-chart" class=" mr-2" id="doughnutchart2">
+                            </calcite-button>
+                        
+                        </div>
+
+                        
+
+                    </div>
+                    <div class="card-body">
+                        <div id="barChart1" style="height: 100%;"></div>
+                        <div id="bubbleChart1" style="height: 100%;"></div>
+                        <div id="doughnutChart1" style="height: 100%;"></div> 
+                        </div>
+                    </div>
+                </div>
+            
+            <div class="col-md-4 p-2">
+                <div class="card" style="height: 380px;">
+                    <div class="card-header d-flex justify-content-between">
+                        <label>Strength of Force</label>
+
+                        <div class="col-md-4 text-end" style="width:25%">
+
+                            <calcite-button appearance="outline" color="red" icon-start="graph-bar-side-by-side" class=" mr-2" id="barchart3">
+                            </calcite-button>
+    
+                            <calcite-button appearance="outline" color="red" icon-start="graph-scatter-plot" class=" mr-2" id="bubblechart3">
+                            </calcite-button>
+    
+                            <calcite-button appearance="outline" color="red" icon-start="pie-chart" class=" mr-2" id="doughnutchart3">
+                            </calcite-button>
+                        
+                        </div>
+
+                        
+
+                    </div>
+                    <div class="card-body">
+                        <div id="barChart2" style="height: 100%;"></div>
+                        <div id="bubbleChart2" style="height: 100%;"></div>
+                        <div id="doughnutChart2" style="height: 100%;"></div> 
+                        </div>
+
+                    </div>
+                </div>
+            
+            <div class="col-md-4 p-2">
+                <div class="card" style="height: 380px;">
+                    <div class="card-header d-flex justify-content-between">
+                        <label>Duration of Search of Villages</label>
+                        
+                        
+
+                    </div>
+                    <div class="card-body">
+                        <div id="sankeyChart">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+    </div>
+
+
+        <div class="row">
+            <div class="col-md-12 p-2">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between border-bottom-0">
+
+                        <h6>Daily Force Movement Report</h6>
+                        <calcite-button appearance="outline" color="red" icon-start="download" class="mr-2 " id="xls4">
+                        </calcite-button>
+
+                    </div>
+                    <div id="form5" class="table-responsive"></div>
+                    <div id = 'popup1' class='overlay'>
+                        <div id = 'popup'>
+                            <h3>Attachment: </h3>
+                            <div id='attachments'>
+
+                            </div>
+                        <!-- <p>Some text</p> -->
+                            <a class="close" href="#">&times;</a>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                    <div id="form3Download" class="table-responsive" style="overflow-x: scroll; overflow-y: scroll; display:none; ">
+
+                    </div>
+                </div>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="Report3" role="tabpanel" aria-labelledby="Report3-tab">
+
+
+
+
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </section>
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-core.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-sankey.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-cartesian.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-bundle.min.js"></script>
+<script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-exports.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+
+<script src="https://js.arcgis.com/4.23/"></script>
+<!-- calcite -->
+<script type="module" src="https://js.arcgis.com/calcite-components/1.0.0-beta.81/calcite.esm.js"></script>
+<script src="Daily Force.js"></script>
+
+
+</html>

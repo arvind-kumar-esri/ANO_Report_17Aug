@@ -1,0 +1,113 @@
+[
+  {
+   "attributes": {
+    "recovery_arms": 2,
+    "name_magisterate": null,
+    "identification_nhrc": null,
+    "magisterial_injury": "Yes",
+    "globalid": "{EB2A86C2-99B4-45DF-8D7D-AB68F41D10B2}",
+    "martyred": null,
+    "fir": "F108 38A",
+    "duration": 40,
+    "injured": null,
+    "datetime": 1651126620000,
+    "identification": null,
+    "magistrate_date": 1648017000000,
+    "last_edited_date": 1651126294973,
+    "naxal_killed": 3,
+    "crater_size": "15",
+    "disposal_dead": "Returned to family",
+    "loss_arms": null,
+    "created_user": "portaladmin",
+    "apprehended": 1,
+    "intelligence": "IB",
+    "date_of_pm": 1643869800000,
+    "last_edited_user": "portaladmin",
+    "details_incident": null,
+    "district": "Balod",
+    "arms": "Handgun",
+    "created_date": 1651126294973,
+    "police_name": null,
+    "objectid": 1,
+    "remarks": null
+   },
+   "geometry": {
+    "x": 81.18710818000005,
+    "y": 20.752726668000037
+   }
+  },
+  {
+   "attributes": {
+    "recovery_arms": 1,
+    "name_magisterate": null,
+    "identification_nhrc": null,
+    "magisterial_injury": "No",
+    "globalid": "{15EA080F-5D5B-4B73-8F09-C65D6A9E4256}",
+    "martyred": null,
+    "fir": "109 38B",
+    "duration": 20,
+    "injured": null,
+    "datetime": 1651126200000,
+    "identification": null,
+    "magistrate_date": null,
+    "last_edited_date": 1651126464914,
+    "naxal_killed": 1,
+    "crater_size": "10",
+    "disposal_dead": "Disposed by Police",
+    "loss_arms": null,
+    "created_user": "portaladmin",
+    "apprehended": 3,
+    "intelligence": "IB",
+    "date_of_pm": 1646289000000,
+    "last_edited_user": "portaladmin",
+    "details_incident": null,
+    "district": "Durg",
+    "arms": "Rifles",
+    "created_date": 1651126464914,
+    "police_name": null,
+    "objectid": 2,
+    "remarks": null
+   },
+   "geometry": {
+    "x": 81.28967000000006,
+    "y": 21.19918000000007
+   }
+  },
+  {
+   "attributes": {
+    "recovery_arms": 3,
+    "name_magisterate": null,
+    "identification_nhrc": null,
+    "magisterial_injury": "No",
+    "globalid": "{35FF50A9-D804-4BA1-8B48-057DD48E43CB}",
+    "martyred": null,
+    "fir": "105 39A",
+    "duration": 13,
+    "injured": null,
+    "datetime": 1649486640000,
+    "identification": null,
+    "magistrate_date": null,
+    "last_edited_date": 1651126739094,
+    "naxal_killed": 6,
+    "crater_size": "10",
+    "disposal_dead": "Returned to family",
+    "loss_arms": null,
+    "created_user": "portaladmin",
+    "apprehended": 4,
+    "intelligence": "Local",
+    "date_of_pm": 1646029800000,
+    "last_edited_user": "portaladmin",
+    "details_incident": null,
+    "district": "Gariaband",
+    "arms": "Shotgun",
+    "created_date": 1651126739094,
+    "police_name": null,
+    "objectid": 3,
+    "remarks": null
+   },
+   "geometry": {
+    "x": 82.23647556900005,
+    "y": 20.448402609000027
+   }
+  }
+ ]

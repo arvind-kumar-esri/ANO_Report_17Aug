@@ -1,0 +1,459 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #dadbe3;
+}
+
+
+
+
+#header {
+    padding: 15px 5px;
+    background: #20275d url(banner.jpg) no-repeat;
+   
+    box-shadow: 1px 1px 15px #d7d7d7;
+    background-position: right;
+    background-size: 32%;
+    color:#ffffff;
+}
+
+.mt-4 {
+    margin-top: -0.1rem !important;
+}
+
+#header img {
+    width: auto;
+    height: 32px;
+}
+
+#header .brandname {
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 25px;
+    margin: 2px 8px 8px;
+    color: #ffffff;
+}
+
+mask {
+    color: #d60303;
+}
+
+
+
+label {
+    font-size: smaller;
+    padding-top: 7px;
+}
+select{
+    font-size: smaller;
+}
+
+#date {
+    font-size: smaller;
+}
+
+#mapDiv {
+    height: 384px;
+    /* position: relative; */
+}
+
+
+.popupheading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1F2667;
+    height:32px;
+    color: #fff;
+    padding: 0px 10px;
+}
+
+
+.close {
+    color: #fff;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.sr-only {
+    border: 0;
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.btn, .btn-check:active + .btn, .btn-check:checked + .btn, .btn.active, .btn.show, .btn:active {
+    border-radius: 20px;
+    padding: 5px 25px;
+}
+modal-content {
+    background-color: #e0e0e0;
+}
+
+.modal-content fieldset {
+    height: 100%;
+    box-sizing: border-box;
+    margin: 10px auto;
+}
+
+fieldset {
+    border: 1px solid #dcdcdc;
+    background: rgb(255,255,255);
+    padding: 10px;
+    border-radius: 4px;
+    margin: 0px;
+}
+
+legend {
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal;
+}
+
+legend {
+    margin: 0px;
+    padding: 5px;
+    color: #fff;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: 1px solid #dcdcdc;
+    font-weight: 600;
+    /* background: rgba(40,100,127,0.72); */
+    background: #888888;
+    background: #b02a37;
+    border-radius: 4px;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    color: #000;
+    position: absolute;
+    margin: auto;
+    left: 5%;
+    top: 5%;
+    width: 90%;
+    height: 90%;
+    overflow: auto;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modalContent {
+    margin: 10px;
+}
+
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+    /* Style the buttons inside the tab */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+/*.countcard{
+    right:16%;
+    width:30%;
+    display:inline-block;
+}*/
+
+.esri-print {
+    display: none;
+}
+
+.btnobject {
+    position: absolute;
+    width: 300px;
+    margin-left: -300px;
+}
+
+.buttons {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    border: 1px solid #d2d2d2;
+    padding: 8px;
+    justify-content: space-between;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.tabcontent {
+    color: white;
+    display: none;
+    padding: 50px;
+    text-align: center;
+  }
+
+.tablink {
+    background-color: #555;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+  }
+
+#layerList,
+#basemapGallery,
+#legend {
+    display: none;
+    height: 370px;
+}
+
+#barChart, #barChart1, #barChart2{
+    display: block;
+}
+
+#bubbleChart, #bubbleChart1, #bubbleChart2{
+    display: none;
+}
+
+#doughnutChart, #doughnutChart1, #doughnutChart2{
+    display: none;
+}
+
+.queryImg {
+    width: 175px;
+    padding-right: 5px;
+    margin: 5px;
+  }
+
+#attachment{
+    position: relative;
+    display: none;
+    right: 8%
+}
+
+#myChart {
+    position: relative;
+    display: none;
+    height: 300px !important;
+    width: 408px !important;
+    margin: 0 auto;
+}
+
+#names,
+#month, #station, #date {
+    padding: 2px 14px;
+    border: 1px solid #ccccccb3;
+    border-radius: 4px;
+    width: 80px;
+    display: inline-block;
+    margin-top: 5px;
+}
+
+
+
+#pdf,
+#attachments,
+#xls1, #xls2, #xls3,
+#refresh,
+#chart {
+    border: none;
+    background: transparent;
+   
+}
+
+.card-text { margin-bottom:0px;}
+select, input {
+    border: 0px solid #cccccc;
+   
+}
+
+b { color:#b02a37 !important;}
+
+.table {
+    font-size: 12px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table td,
+.table th {
+    /*border: 1px solid #f59c9c78;*/
+    padding: 8px;
+}
+
+.table tr:nth-child(even) {
+    background-color: #efdbdb59;
+}
+
+.table tr:hover {
+    background-color: #f7c7c791;
+}
+
+    .table th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background: #b02a37;
+        width:50px;
+        color: white;
+    }
+
+.esri-button {
+    background: #a70643;
+    border: 1px solid #a70643;
+}
+
+.esri-button--secondary {
+    background: transparent;
+    border: 1px solid #a70643;
+    color: #a70643;
+}
+
+.nav-link {
+    border: none !important;
+    border-radius: 0px !important;
+    color: #fff;
+}
+
+.nav-link:hover {
+    border: none !important;
+    border-radius: 0px !important;
+    color: #fff;
+}
+
+.nav-tabs {
+    border-bottom: none !important;
+}
+
+.btn-sm {
+    margin-left: 8px;
+}
+
+.esri-identity-modal--open .esri-identity-modal__dialog {
+    max-width: 20vw !important;
+}
+
+.card-header {
+    background-color: #20275d !important;
+    color:#ffffff;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+    /* display: none; */
+  }
+
+  #popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    height: 300px;
+    /* display: none; */
+  }
+
+  #popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+
+  a:link{
+      color: white;
+  }
+
+  #barChart, #bubbleChart, #doughnutChart, #sankeyChart{
+    height: 100%;
+    width: 100%
+  }
+
+  .anychart-credits {
+    display: none;
+ }
+
+
+@media only screen and (max-width: 600px) {
+    #dropdown #names, #month, #station {
+        width: 250px;
+        padding-top: 20px;
+    }
+    #dropdown label {
+        display: inline-block;
+        width: 100px;
+    }
+    .esri-identity-modal--open .esri-identity-modal__dialog {
+        max-width: 100vw !important;
+    }
+    #mapDiv {
+        height: 300px;
+    }
+    #pdf,
+    #xls1, #xls2, #xls3,
+    #refresh,
+    #chart, #attachments {
+        margin-top: 8px;
+    }
+    .nav-link {
+        width: 100%;
+    }
+    #header {
+        background-size: 82%;
+    }
+}

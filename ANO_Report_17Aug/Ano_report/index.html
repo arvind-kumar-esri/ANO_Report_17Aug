@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>ANO-I,II,III Report</title>
+    <!-- mobile responsive meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#00d0b0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <!-- arcgis js -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.23/esri/themes/light/main.css">
+
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/calcite-components/1.0.0-beta.81/calcite.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- main template stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .row {
+            --bs-gutter-x: -0.5rem;
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+    <header id="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 d-flex flex-row">
+                    <a href="https://anophq.cgpolice.gov.in/ano_homepage/">
+                        <img src="logo.png" height="19" width="19" />
+                    </a>
+                    <span class="brandname">ANO <mask>I, II, III </mask>Dashboard</span>
+                </div>
+                <div class="col-md-9">
+                    <nav>
+                        <div class="nav nav-tabs justify-content-end mt-4" id="nav-tab" role="tablist">
+
+                            <button class="btn btn-danger btn-sm active" id="Report1-tab" data-bs-toggle="tab" data-bs-target="#Report1" type="button" role="tab" aria-controls="Report1" aria-selected="true">ANO-I, II, III</button>
+
+                            <button class="btn btn-danger btn-sm" id="Report2-tab" data-bs-toggle="tab" data-bs-target="#Report2" type="button" role="tab" aria-controls="Report2" aria-selected="false">ANO-IV</button>
+                            <button class="btn btn-danger btn-sm" id="Report3-tab" data-bs-toggle="tab" data-bs-target="#Report3" type="button" role="tab" aria-controls="Report3" aria-selected="false">
+                                ANO-VI
+                            </button>
+
+                            <button class="btn btn-danger btn-sm" id="Report4-tab" data-bs-toggle="tab" data-bs-target="#Report4" type="button" role="tab" aria-controls="Report4" aria-selected="false">
+                                Analysis of IEDs
+                            </button>
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="Cardcontainer">
+        <div class="row">
+            <div class="col-md-3 p-2">
+                <div class="card h-100">
+                    <!--  <img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body d-flex justify-content-between">
+                        <!-- <h5 class="card-title">Card title</h5>-->
+                        <p class="card-text"> Demining:</p> <b id="dCount"></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 p-2">
+                <div class="card h-100">
+                    <!--  <img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body d-flex justify-content-between">
+                        <!--  <h5 class="card-title">Card title</h5>-->
+                        <p class="card-text">ROP: </p><b id="rCount"></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 p-2">
+                <div class="card h-100">
+                    <!--  <img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body d-flex justify-content-between">
+                        <!-- <h5 class="card-title">Card title</h5>-->
+                        <p class="card-text">Chance Encounter:</p> <b id="cCount"></b>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 p-2">
+                <div class="card h-100">
+                    <!--  <img src="..." class="card-img-top" alt="...">-->
+                    <div class="card-body d-flex justify-content-between">
+                        <!-- <h5 class="card-title">Card title</h5>-->
+                        <p class="card-text">Int Based:</p> <b id="iCount"></b>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <section>
+
+
+        <div class="row">
+            <div class="col-md-6 p-2">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <label class="pt-1">Map Tools</label>
+                        <div>
+                            <calcite-button appearance="outline" color="red" icon-start="print" class="mr-2" id="print">
+                            </calcite-button>
+                            <calcite-button appearance="outline" color="red" icon-start="legend" class="mr-2" id="legend-btn">
+                            </calcite-button>
+                            <calcite-button appearance="outline" color="red" icon-start="basemap" class="mr-2" id="basemap">
+                            </calcite-button>
+                            <calcite-button appearance="outline" color="red" icon-start="layers" class="fmr-2 " id="layers">
+                            </calcite-button>
+                        </div>
+                    </div>
+
+                    <div id="mapDiv">
+
+                        <div class="btnobject">
+                            <div id="layerList"></div>
+                            <div id="basemapGallery"></div>
+                            <div id="legend"></div>
+                            <div id="printDiv"></div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 p-2">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+
+                        <div id="dropdown">
+                            <label style="font-size: smaller;">District</label>
+                            <select name="district-names" id="selectDistrict" style="width:100px; font-size:smaller">
+                                <option>All</option>
+                            </select>
+
+                            <label style="font-size: smaller;">PS</label>
+
+                            <select name="ps" id="selectPs" style="width:100px;font-size:smaller">
+                                <option>All</option>
+                            </select>
+
+
+
+                            <label style="font-size: smaller;">Month</label>
+                            <select name="months" id="selectMonth" style="width:100px; font-size:smaller">
+                                <option>All</option>
+                            </select>
+
+                            <label style="font-size: smaller;">Date</label>
+                            <input style="width:111px; font-size:smaller" type="date"
+                                   id="consultsched"
+                                   name="trip-start"
+                                   min="2010-01-01"
+                                   max="2037-12-31" />
+                        </div>
+
+
+                        <div class="col-md-4 text-end" style="width:15%">
+                            <calcite-button appearance="outline" color="red" icon-start="file-pdf" class=" mr-2" id="pdfbar">
+                            </calcite-button>
+
+                            <calcite-button appearance="outline" color="red" icon-start="refresh" class=" mr-2" id="refresh">
+                            </calcite-button>
+
+
+
+
+
+                        </div>
+
+                    </div>
+                    <div id="stacks">
+                        <!-- <div class="card-body" style="height:387px;position: relative;padding-top: 33px; width: 100%;">-->
+                        <p style="text-align: center; color:saddlebrown; margin-top:2%;">Districtwise Naxalite Killed, Apprehended, Recovered</p>
+                        <canvas id="stackedChart" style="max-height:330px; width:100%; margin-left:4%;"></canvas>
+                    </div>
+
+                    <!--  -->
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4 p-2">
+                <div class="card" style=" height:380px;" id="donuts">
+                    <div class="card-header d-flex justify-content-between">
+                        <label>Types of Operations</label>
+
+                        <calcite-button appearance="outline" color="red" icon-start="file-pdf" class="mr-2 " id="pdfdonut">
+                        </calcite-button>
+
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 p-2">
+                <div class="card" style="height: 380px;" id="polars">
+                    <div class="card-header d-flex justify-content-between">
+                        <label>No. of Naxalites Killed, Recovered, Arrested</label>
+
+                        <calcite-button appearance="outline" color="red" icon-start="file-pdf" class=" mr-2 " id="pdfpolar">
+                        </calcite-button>
+
+                    </div>
+                    <div class="card-body">
+                        <canvas id="polarChart">
+                        </canvas>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 p-2">
+                <div class="card" style="height: 380px;" id="bubbles">
+                    <div class="card-header d-flex justify-content-between">
+                        <label>Bubble Chart</label>
+                        <calcite-button appearance="outline" color="red" icon-start="file-pdf" class=" mr-2 " id="pdfbubble">
+                        </calcite-button>
+
+                    </div>
+                    <div class="card-body">
+                        <canvas id="bubbleChart">
+                        </canvas>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-12 p-2">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between border-bottom-0">
+
+                        <h6>ANO-I, II, III Report </h6>
+                        <calcite-button appearance="outline" color="red" icon-start="download" class="mr-2 " id="xls3">
+                        </calcite-button>
+
+                    </div>
+                    <div id="form1" class="table-responsive"></div>
+                    <div id="form1Download" class="table-responsive" style="overflow-x: scroll; overflow-y: scroll; display:none; ">
+
+                    </div>
+                </div>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="Report3" role="tabpanel" aria-labelledby="Report3-tab">
+
+
+
+
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </section>
+    <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button>-->
+    <div id="id01" class="modal" style="display:none;">
+        <div class="modal-header">
+            <button type="button" class="btn-close btn-close-white" onclick="document.getElementById('id01').style.display='none'" id="closemodal" aria-label="Close"></button>
+            <!--<span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>-->
+
+
+            <div class="modal-content">
+                <div class="modalContent" id="modalRoadDetails">
+                    <div class="popupheading">
+                        <button class="btn btn-danger btn-sm active" id="ano123Details" data-bs-toggle="tab" data-bs-target="#Report1" type="button" role="tab" aria-controls="Report1" aria-selected="true">ANO-I,II,III Details</button>
+                        <button class="btn btn-danger btn-sm active" id="martyrDetails" data-bs-toggle="tab" data-bs-target="#Report1" type="button" role="tab" aria-controls="Report1" aria-selected="true">Details of Martyrs</button>
+
+                        <button type="button" style="float: right; margin-left:77%;" class="deletebutton" id="printPdf">
+                            <img src="https://meghalayacmdashboard.in/App_Meghalaya/dashboard/PMGSY/img/printing.svg" height="15" width="15">
+                        </button>
+                    </div>
+                    <div class="row" id="printdetails">
+                        <div class="col-md-3 p-2" style="width:35% !important;">
+                            <div id="roadDetailsDiv">
+                                <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                    <legend>ANO-I,II,III Details</legend>
+                                    <div id="formDetails" class="table-responsive"></div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9" style="width:65% !important; display:block;">
+                            <div class="row">
+                                <div class="col-md-4 p-2">
+                                    <div id="officerDetailsDiv">
+                                        <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                            <legend>Inquest Report</legend>
+                                            <div id="attachmentFire"></div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div id="firCopy">
+                                        <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                            <legend>FIR Copy</legend>
+                                            <div id="fir"></div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div id="eyeSketch">
+                                        <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                            <legend>Eye sketch of Scene of EOF</legend>
+                                            <div id="eye"></div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div id="opsPlan">
+                                        <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                            <legend>OPS Plan</legend>
+                                            <div id="ops"></div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div id="debriefingnote">
+                                        <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                            <legend>Debriefing note</legend>
+                                            <div id="debriefing"></div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div id="nhrcletter">
+                                        <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                            <legend>Copy of letter to NHRC</legend>
+                                            <div id="nhrc"></div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 p-2">
+                                    <div id="newspapercut">
+                                        <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                            <legend>News paper cuttings</legend>
+                                            <div id="newspaper"></div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="martyrD" style="display:none;">
+                        <div class="col-md-3 p-2" style="width:35% !important;">
+                            <div id="roadDetailsDiv">
+                                <fieldset style="margin:0px auto !important;" class="boxshadow">
+                                    <legend>ANO-I,II,III Details</legend>
+                                    <div id="formDetails" class="table-responsive"></div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                     
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="html2pdf/dist/html2pdf.bundle.js"></script>
+    <script src="html2pdf/dist/html2pdf.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"></script>-->
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>-->
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
+    <script src="https://js.arcgis.com/4.23/"></script>
+    <!-- calcite -->
+    <script type="module" src="https://js.arcgis.com/calcite-components/1.0.0-beta.81/calcite.esm.js"></script>
+    <script src="ano123.js"></script>
+
+
+</body>
+
+</html>
